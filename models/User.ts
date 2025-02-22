@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import mongoose, { Schema } from "mongoose";
+import mongoose, { model, models, Schema } from "mongoose";
 
 export interface IUser {
   email: string;
@@ -32,3 +32,6 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
+
+const User =
+  (models.User as mongoose.Model<IUser>) || model<IUser>("User", userSchema);
