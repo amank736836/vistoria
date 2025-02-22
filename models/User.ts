@@ -2,11 +2,11 @@ import bcrypt from "bcryptjs";
 import mongoose, { model, models, Schema, Types } from "mongoose";
 
 export interface IUser {
-  _id?: Types.ObjectId;
+  _id: Types.ObjectId;
   email: string;
   password: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const userSchema = new Schema<IUser>(
