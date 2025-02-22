@@ -73,6 +73,6 @@ const videoSchema = new Schema<IVideo>(
 
 const Video =
   (models.Video as mongoose.Model<IVideo>) ||
-  model<IVideo>("Video", videoSchema);
+  model<IVideo>("Video", videoSchema, "videos");
 
 export default Video;
