@@ -1,10 +1,10 @@
 import bcrypt from "bcryptjs";
-import mongoose, { model, models, Schema } from "mongoose";
+import mongoose, { model, models, Schema, Types } from "mongoose";
 
 export interface IUser {
+  _id?: Types.ObjectId;
   email: string;
   password: string;
-  _id?: mongoose.Types.ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
 }
