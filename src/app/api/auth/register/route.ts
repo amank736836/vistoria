@@ -1,6 +1,6 @@
-import { connectToDatabase } from "@/app/backend/lib/db";
+import { connectToDatabase } from "@/src/backend/lib/db";
 import { NextRequest, NextResponse } from "next/server";
-import User from "@/app/backend/models/User";
+import User from "@/src/backend/models/User";
 
 export async function POST(request: NextRequest) {
   const { email, password } = await request.json();
