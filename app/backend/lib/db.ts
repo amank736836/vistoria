@@ -38,5 +38,4 @@ export async function connectToDatabase() {
   }
 
   return cached.connection;
-
 }
