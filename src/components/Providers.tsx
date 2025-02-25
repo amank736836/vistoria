@@ -1,8 +1,12 @@
 "use client";
 
 import { ImageKitProvider } from "imagekitio-next";
+import {
+    IKUploadResponse,
+    UploadError,
+} from "imagekitio-next/dist/types/components/IKUpload/props";
 import { SessionProvider } from "next-auth/react";
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
 const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
@@ -28,6 +32,22 @@ export default function Providers({ children }: { children: ReactNode }) {
         `Imagekit Authentication request failed: ${authError.message}`
       );
     }
+  };
+
+  const onError = (err: UploadError) => {
+    console.log("Error", err);
+  };
+
+  const onSuccess = (res: IKUploadResponse) => {
+    console.log("Success", res);
+  };
+
+  const onUploadProgress = (progress: Number) => {
+    console.log("Progress", progress);
+  };
+
+  const onUploadStart = (evt: ChangeEvent<HTMLInputElement>) => {
+    console.log("Start", evt);
   };
 
   return (
