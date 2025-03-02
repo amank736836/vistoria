@@ -2,11 +2,12 @@
 
 import { ImageKitProvider } from "imagekitio-next";
 import {
-    IKUploadResponse,
-    UploadError,
+  IKUploadResponse,
+  UploadError,
 } from "imagekitio-next/dist/types/components/IKUpload/props";
 import { SessionProvider } from "next-auth/react";
 import { ChangeEvent, ReactNode } from "react";
+import { NotificationProvider } from "./Notification";
 
 const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
@@ -52,13 +53,15 @@ export default function Providers({ children }: { children: ReactNode }) {
 
   return (
     <SessionProvider>
-      <ImageKitProvider
-        urlEndpoint={urlEndpoint}
-        publicKey={publicKey}
-        authenticator={authenticator}
-      >
-        {children}
-      </ImageKitProvider>
+      <NotificationProvider>
+        <ImageKitProvider
+          urlEndpoint={urlEndpoint}
+          publicKey={publicKey}
+          authenticator={authenticator}
+        >
+          {children}
+        </ImageKitProvider>
+      </NotificationProvider>
     </SessionProvider>
   );
 }
