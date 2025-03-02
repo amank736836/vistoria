@@ -10,17 +10,12 @@ export async function middleware(req: NextRequest) {
 
   const pathname = req.nextUrl.pathname;
 
-  if (token && pathname !== "/dashboard") {
-    return NextResponse.redirect("/dashboard");
+  if (token && pathname !== "/") {
+    return NextResponse.redirect("/");
   }
 
-  if (
-    !token &&
-    pathname !== "/login" &&
-    pathname !== "/register" &&
-    !pathname.startsWith("/api/auth")
-  ) {
-    return NextResponse.redirect("/login");
+  if (!token && pathname !== "/login" && pathname !== "/register") {
+    return NextResponse.next();
   }
 
   return NextResponse.next();
