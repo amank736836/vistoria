@@ -40,8 +40,8 @@ export const authOptions: NextAuthConfig = {
           }
 
           const isValid = await bcrypt.compare(
-            user.password,
-            credentials.password as string
+            credentials.password as string,
+            user.password
           );
 
           if (!isValid) {
