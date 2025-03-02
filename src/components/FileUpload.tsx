@@ -10,8 +10,8 @@ import { ChangeEvent, useState } from "react";
 interface FileUploadProps {
   onSuccess: (res: IKUploadResponse) => void;
   onError: (err: UploadError) => void;
-  onUploadStart?: (evt: ChangeEvent<HTMLInputElement>) => void;
-  onUploadProgress?: (progress: Number) => void;
+  onUploadStart: (evt: ChangeEvent<HTMLInputElement>) => void;
+  onUploadProgress: (progress: number) => void;
   fileType?: "image" | "video";
 }
 
@@ -60,7 +60,7 @@ export default function FileUpload({
   const validateFile = (file: File) => {
     if (fileType === "video") {
       if (!file.type.startsWith("video/")) {
-        setError("Please upload a video file");
+        setError("Please upload a valid video file");
         return false;
       }
       if (file.size > 1024 * 1024 * 100) {
@@ -70,7 +70,7 @@ export default function FileUpload({
     } else {
       const validTypes = ["image/jpeg", "image/png", "image/webp"];
       if (!validTypes.includes(file.type)) {
-        setError("Please upload an valid image file(jpeg, png, webp)");
+        setError("Please upload an valid image file(JPEG, PNG, WEBP)");
         return false;
       }
       if (file.size > 1024 * 1024 * 5) {
@@ -94,14 +94,6 @@ export default function FileUpload({
         validateFile={validateFile}
         useUniqueFileName={true}
         folder={fileType === "video" ? "/vistoria/videos" : "/vistoria/images"}
-        extensions={[
-          {
-            name: "remove-bg",
-            options: {
-              add_shadow: true,
-            },
-          },
-        ]}
       />
       {uploading && (
         <div className="flex items-center gap-2 text-sm text-primary">
