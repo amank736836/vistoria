@@ -1,6 +1,6 @@
 import { IKVideo } from "imagekitio-next";
-import { IVideo } from "../backend/models/Video";
 import Link from "next/link";
+import { IVideo } from "../backend/models/Video";
 
 function VideoComponent({ video }: { video: IVideo }) {
   return (
@@ -10,7 +10,7 @@ function VideoComponent({ video }: { video: IVideo }) {
           <div className="rounded-xl overflow-hidden">
             <IKVideo
               path={video.videoUrl}
-              transformation={[{ quality: "60", height: "300" }]}
+              transformation={[{ quality: "60" }]}
               controls={video.controls}
               className="object-contain rounded-xl max-w-full max-h-full"
             />
